@@ -1,0 +1,480 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+
+// GitHub-language-style renkleriyle 8 temel teknoloji
+const skills = [
+  { label: 'C#',  sub: 'ASP.NET Core', bg: '#178600', text: '#ffffff' },
+  { label: 'Go',  sub: 'Golang',       bg: '#00ADD8', text: '#0b2b30' },
+  { label: 'Ja',  sub: 'Java',         bg: '#ED8B00', text: '#2b1600' },
+  { label: 'Py',  sub: 'Python',       bg: '#3776AB', text: '#ffffff' },
+  { label: 'SQL', sub: 'MySQL',        bg: '#F29111', text: '#2b1600' },
+  { label: 'JS',  sub: 'JavaScript',   bg: '#F7DF1E', text: '#2b2600' },
+  { label: 'Lx',  sub: 'Linux',        bg: '#2b2b2b', text: '#FFC107' },
+  { label: 'Git', sub: 'Git',          bg: '#F05032', text: '#ffffff' },
+];
+
+const projects = [
+  {
+    title: 'API Entegrasyonlu Sözlük',
+    desc: 'Gerçek zamanlı veri çekme ve işleme odaklı web projesi.',
+    tags: ['API', 'JavaScript', 'MySQL'],
+    image: '/images/sozluk-proje.png',
+    file: '/downloads/sozluk-proje.zip',
+  },
+  {
+    title: 'Kripto Takip Sistemi',
+    desc: 'Backend destekli, analiz odaklı takip sistemi.',
+    tags: ['C#', 'API', 'MySQL'],
+    image: '/images/kripto-proje.png',
+    file: '/downloads/kripto-proje.zip',
+  },
+];
+
+// Hero başlığı build-time'da harflere bölünüyor (JS'te split etmeye gerek kalmasın diye)
+const heroWords = ['Hikmet', 'Güleç'];
+
+// Terminal satırları build-time'da karakterlere bölünüyor -> gerçek "yazma" efekti
+const bootLines = [
+  'initializing backend services...',
+  'loading C# (ASP.NET Core)... [OK]',
+  'mounting Go & Java runtimes... [OK]',
+  'compiling Python services... [OK]',
+  'connecting MySQL & JavaScript layer... [OK]',
+  'syncing git · linux env ready',
+  'deployment ready.',
+];
+---
+
+<Layout>
+  <!-- ============ HERO ============ -->
+  <section id="intro" class="w-full h-screen flex items-center justify-center relative bg-transparent overflow-hidden [perspective:1000px]">
+    <div id="hero-glow" aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 w-[420px] h-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-30 dark:opacity-25 bg-linear-to-br from-blue-400 to-teal-300 dark:from-purple-500 dark:to-pink-500 will-change-transform"></div>
+
+    <div id="intro-content" class="text-center z-10 px-6 will-change-transform max-w-4xl mx-auto">
+      <p id="intro-eyebrow" class="font-mono text-xs md:text-sm tracking-[0.35em] uppercase text-blue-600 dark:text-green-400 mb-6 opacity-0">
+        <span class="terminal-caret">&gt;</span> whoami
+      </p>
+      <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white transition-colors">
+        {heroWords.map((word) => (
+          <span class="inline-block mr-4 md:mr-6 last:mr-0">
+            {word.split('').map((ch) => (
+              <span class="hero-char inline-block will-change-transform">{ch}</span>
+            ))}
+          </span>
+        ))}
+      </h1>
+      <p id="intro-role" class="text-gray-600 dark:text-gray-400 text-xl md:text-2xl font-light transition-colors opacity-0">
+        Software Developer <span class="text-gray-400 dark:text-gray-600">/ Yazılım Geliştirici</span>
+      </p>
+      <p id="intro-summary" class="mt-6 text-gray-500 dark:text-gray-500 text-sm md:text-base font-mono max-w-xl mx-auto leading-relaxed opacity-0">
+        Modern yazılım teknolojileriyle ölçeklenebilir backend çözümleri ve dinamik web arayüzleri geliştiriyorum.
+      </p>
+    </div>
+
+    <div id="scroll-cue" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 z-10">
+      <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-gray-400 dark:text-gray-600">scroll</span>
+      <svg class="w-4 h-4 text-gray-400 dark:text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ TERMINAL / BOOT SEQUENCE ============ -->
+  <section id="dev-universe" class="w-full h-screen flex items-center justify-center relative bg-transparent overflow-hidden">
+    <div class="editor-window w-[90vw] md:w-[60vw] h-[60vh] bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border border-gray-300 dark:border-gray-700 rounded-xl shadow-2xl flex flex-col overflow-hidden opacity-0 translate-y-24 will-change-transform">
+      <div class="w-full h-10 bg-gray-100 dark:bg-gray-950 flex items-center px-4 gap-2 border-b border-gray-200 dark:border-gray-800 select-none">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        <span class="text-xs text-gray-500 font-mono ml-4">hikmet@dev: ~/skills</span>
+      </div>
+      <div class="editor-body p-6 font-mono text-sm md:text-base text-blue-600 dark:text-green-400 h-full relative overflow-hidden flex flex-col gap-2 will-change-transform">
+        {bootLines.map((line) => (
+          <div class="code-line will-change-transform">
+            <span class="text-gray-400 dark:text-gray-600">$</span>{' '}
+            {line.split('').map((ch) => (
+              <span class="code-char opacity-0">{ch === ' ' ? '\u00A0' : ch}</span>
+            ))}
+          </div>
+        ))}
+        <span id="terminal-end-caret" class="terminal-caret font-mono text-blue-600 dark:text-green-400 opacity-0"></span>
+
+        <div class="big-title-reveal absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-900 opacity-0 pointer-events-none will-change-transform">
+          <h2 class="text-4xl md:text-7xl font-extrabold text-center px-4 leading-tight text-gray-900 dark:text-white">
+            ...!<br/>
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-teal-400 dark:from-purple-400 dark:to-pink-600">Hello World</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS GRID ============ -->
+  <section id="skills-section" class="w-full py-24 bg-gray-50 dark:bg-black/50 transition-colors z-20 relative backdrop-blur-xs">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs md:text-sm tracking-[0.35em] uppercase text-blue-600 dark:text-green-400 mb-3">stack</p>
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">Teknik Yetkinlikler</h2>
+      </div>
+
+      <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 [perspective:800px]">
+        {skills.map((s) => (
+          <div class="skill-card opacity-0 translate-y-8 will-change-transform group relative flex flex-col items-center justify-center gap-3 p-6 md:p-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-default overflow-hidden [transform-style:preserve-3d]">
+            <div class="absolute inset-x-0 top-0 h-1 transition-all duration-300 group-hover:h-full group-hover:opacity-10" style={`background-color:${s.bg}`}></div>
+            <div
+              class="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center font-mono font-bold text-lg md:text-xl transition-transform duration-300"
+              style={`background-color:${s.bg}; color:${s.text}; transform: translateZ(30px);`}
+            >
+              {s.label}
+            </div>
+            <span class="relative font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base" style="transform: translateZ(20px);">{s.sub}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about-section" class="w-full min-h-screen flex items-center py-20 bg-white dark:bg-black transition-colors z-20 relative">
+    <div class="max-w-6xl mx-auto px-6 w-full">
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs md:text-sm tracking-[0.35em] uppercase text-blue-600 dark:text-green-400 mb-3">about</p>
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">Hakkımda</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="about-card opacity-0 translate-y-8 will-change-transform p-8 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <h3 class="text-2xl font-semibold mb-6 text-blue-600 dark:text-purple-400">Profesyonel Profil</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200">Backend &amp; Ölçeklenebilirlik</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Backend mimarileri, API entegrasyonları ve ölçeklenebilir sistemler üzerine çalışan bir yazılım geliştiricisiyim.</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 dark:bg-gray-800"></div>
+            <div>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200">Dinamik Arayüzler</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Modern yazılım teknolojileriyle sağlam backend çözümlerinin yanı sıra akıcı, dinamik web arayüzleri de üretiyorum.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card opacity-0 translate-y-8 will-change-transform p-8 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <h3 class="text-2xl font-semibold mb-6 text-teal-600 dark:text-pink-400">Çalışma Prensibi</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200">Temiz Kod</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Okunabilir, sürdürülebilir ve test edilebilir kod yazmayı; karmaşık problemleri sade çözümlere indirgemeyi önemsiyorum.</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 dark:bg-gray-800"></div>
+            <div>
+              <h4 class="font-bold text-gray-800 dark:text-gray-200">Sürekli Öğrenme</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Yeni teknolojileri takip ediyor, her projede backend performansını ve kullanıcı deneyimini birlikte iyileştirmeyi hedefliyorum.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects-section" class="w-full py-24 bg-gray-50 dark:bg-black/50 transition-colors z-20 relative backdrop-blur-xs">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs md:text-sm tracking-[0.35em] uppercase text-blue-600 dark:text-green-400 mb-3">work</p>
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">Projelerim</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {projects.map((p) => (
+          <div class="project-card opacity-0 translate-y-8 will-change-transform relative flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-md group">
+            <div class="h-48 overflow-hidden bg-gray-200 dark:bg-gray-800 relative">
+              <img
+                src={p.image}
+                alt={p.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback')"
+              />
+            </div>
+            <div class="p-6 flex-1 flex flex-col relative z-10">
+              <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">{p.title}</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">{p.desc}</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                {p.tags.map((t) => (
+                  <span class="text-xs font-semibold px-2 py-1 bg-gray-100 dark:bg-black rounded text-gray-700 dark:text-gray-300">{t}</span>
+                ))}
+              </div>
+              <a
+                href={p.file}
+                download
+                class="w-full text-center py-3 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
+              >
+                Projeyi İndir
+              </a>
+            </div>
+          </div>
+        ))}
+
+        <div class="project-card opacity-0 translate-y-8 will-change-transform flex flex-col bg-white dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden items-center justify-center opacity-60 p-6 min-h-[20rem] select-none">
+          <div class="text-4xl text-gray-400 dark:text-gray-600 mb-4">+</div>
+          <p class="text-gray-500 font-medium">Yakında Yeni Projeler</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact-section" class="w-full py-24 bg-white dark:bg-black transition-colors z-20 relative border-t border-gray-200 dark:border-gray-900">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="font-mono text-xs md:text-sm tracking-[0.35em] uppercase text-blue-600 dark:text-green-400 mb-3">contact</p>
+      <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">İletişime Geç</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-10 text-lg">Projelerin için güçlü bir backend mimarisi veya teknik bir vizyon arıyorsan, detayları konuşmak için bana ulaşabilirsin.</p>
+
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+        <a href="tel:+905539237358" class="contact-link flex items-center gap-3 px-8 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all">
+          <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          <span class="font-medium">+90 (553) 923 73 58</span>
+        </a>
+
+        <a href="mailto:hikmetggulec@gmail.com" class="contact-link flex items-center gap-3 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black border border-transparent rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <span class="font-medium">hikmetggulec@gmail.com</span>
+        </a>
+      </div>
+
+      <p class="mt-16 font-mono text-xs text-gray-400 dark:text-gray-700">© {new Date().getFullYear()} Hikmet Güleç — built with Astro</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .terminal-caret::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  .img-fallback {
+    background: linear-gradient(135deg, #1f2937, #111827);
+  }
+
+  /* Proje kartlarında imleci takip eden "spotlight" efekti (tema rengine duyarlı) */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(var(--accent-rgb), 0.14), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .project-card:hover::after {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  import Lenis from 'lenis';
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // 1. Lenis Smooth Scroll Kurulumu
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const scrollProgressEl = document.getElementById('scroll-progress');
+  lenis.on('scroll', (e) => {
+    ScrollTrigger.update();
+    if (scrollProgressEl) {
+      const p = typeof e.progress === 'number' ? e.progress : 0;
+      scrollProgressEl.style.width = `${Math.min(100, Math.max(0, p * 100))}%`;
+    }
+  });
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  // 2. Vanta.js arka plan
+  import('vanta/dist/vanta.net.min.js').then((VANTA) => {
+    VANTA.default({
+      el: '#vanta-bg',
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      color: 0x9f5ffd,
+      backgroundColor: 0x0,
+      points: 9.0,
+      maxDistance: 20.0,
+      spacing: 18.0,
+    });
+  });
+
+  if (!reduceMotion) {
+    // 3. Hero giriş animasyonu (harf harf)
+    const heroTl = gsap.timeline({ delay: 0.2 });
+    heroTl
+      .to('#intro-eyebrow', { opacity: 1, duration: 0.6, ease: 'power2.out' })
+      .from('.hero-char', { opacity: 0, y: 50, rotateX: -60, stagger: 0.035, duration: 0.7, ease: 'back.out(1.7)' }, '-=0.3')
+      .to('#intro-role', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.35')
+      .to('#intro-summary', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+      .to('#scroll-cue', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2');
+
+    // Hero scroll-out
+    gsap.to('#intro-content', {
+      scrollTrigger: { trigger: '#intro', start: 'top top', end: 'bottom top', scrub: true },
+      opacity: 0,
+      y: -100,
+      scale: 0.95,
+    });
+    gsap.to('#scroll-cue', {
+      scrollTrigger: { trigger: '#intro', start: 'top top', end: '20% top', scrub: true },
+      opacity: 0,
+    });
+
+    // Hero glow: fareyi büyülü biçimde takip eden ışık
+    if (isFinePointer) {
+      const glow = document.getElementById('hero-glow');
+      const introSection = document.getElementById('intro');
+      if (glow && introSection) {
+        const moveX = gsap.quickTo(glow, 'x', { duration: 0.9, ease: 'power3.out' });
+        const moveY = gsap.quickTo(glow, 'y', { duration: 0.9, ease: 'power3.out' });
+        introSection.addEventListener('mousemove', (e) => {
+          const rect = introSection.getBoundingClientRect();
+          const relX = (e.clientX - rect.left) / rect.width - 0.5;
+          const relY = (e.clientY - rect.top) / rect.height - 0.5;
+          moveX(relX * 140);
+          moveY(relY * 140);
+        });
+      }
+    }
+
+    // 4. Terminal / boot sequence (pinned, karakter karakter "yazma" efekti)
+    const masterTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#dev-universe',
+        start: 'top top',
+        end: '+=2800',
+        pin: true,
+        scrub: 1,
+      },
+    });
+
+    masterTl
+      .to('.editor-window', { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out', force3D: true })
+      .to('.code-char', { opacity: 1, duration: 0.01, stagger: 0.012, ease: 'none' })
+      .to('#terminal-end-caret', { opacity: 1, duration: 0.2 }, '-=0.1')
+      .to('.editor-body', { opacity: 0.15, duration: 0.4 }, '+=0.3')
+      .to('.big-title-reveal', { opacity: 1, duration: 1, force3D: true })
+      .to('.editor-window', { scale: 1.08, opacity: 0, duration: 1.5, ease: 'power2.inOut', force3D: true }, '+=0.5');
+
+    // 5. Skills grid stagger reveal
+    gsap.to('.skill-card', {
+      scrollTrigger: { trigger: '#skills-grid', start: 'top 80%' },
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: { each: 0.08, grid: 'auto', from: 'start' },
+      ease: 'power3.out',
+    });
+
+    // 5b. Skill kartlarında imleci takip eden 3D "tilt"
+    if (isFinePointer) {
+      document.querySelectorAll('.skill-card').forEach((card) => {
+        const rotateX = gsap.quickTo(card, 'rotateX', { duration: 0.45, ease: 'power3.out' });
+        const rotateY = gsap.quickTo(card, 'rotateY', { duration: 0.45, ease: 'power3.out' });
+        const lift = gsap.quickTo(card, 'y', { duration: 0.45, ease: 'power3.out' });
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          rotateY(px * 16);
+          rotateX(-py * 16);
+        });
+        card.addEventListener('mouseleave', () => {
+          rotateX(0);
+          rotateY(0);
+          lift(0);
+        });
+        card.addEventListener('mouseenter', () => lift(-4));
+      });
+    }
+
+    // 6. About cards
+    gsap.to('.about-card', {
+      scrollTrigger: { trigger: '#about-section', start: 'top 70%' },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: 'power3.out',
+    });
+
+    // 7. Project cards + imleci takip eden spotlight
+    gsap.to('.project-card', {
+      scrollTrigger: { trigger: '#projects-section', start: 'top 70%' },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: 'power3.out',
+    });
+
+    if (isFinePointer) {
+      document.querySelectorAll('.project-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+        });
+      });
+    }
+
+    // 8. Contact links
+    gsap.from('.contact-link', {
+      scrollTrigger: { trigger: '#contact-section', start: 'top 75%' },
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
+    });
+  } else {
+    // Reduced motion: her şeyi doğrudan görünür yap
+    document.querySelectorAll(
+      '#intro-eyebrow, #intro-role, #intro-summary, #scroll-cue, .hero-char, .editor-window, .code-char, .skill-card, .about-card, .project-card'
+    ).forEach((el) => {
+      el.classList.remove('opacity-0', '-translate-x-4', 'translate-y-8', 'translate-y-24');
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    const endCaret = document.getElementById('terminal-end-caret');
+    if (endCaret) endCaret.style.opacity = '1';
+  }
+</script>

@@ -1,0 +1,335 @@
+
+---
+/**
+ * src/layouts/Layout.astro
+ * -----------------------------------------------------------------------
+ * Global HTML skeleton for the portfolio.
+ * - Handles FOUC-free dark/light theme sync via an inline (is:inline) script
+ * - Defines the design-token system as CSS custom properties
+ * - Renders a pinned glassmorphic navbar with the theme toggle
+ * - Renders the footer / contact section
+ * All motion in this file is CSS-only (transform + opacity), GPU friendly.
+ * -----------------------------------------------------------------------
+ */
+
+ import "../styles/global.css";
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Hikmet Güleç — Software Developer",
+  description = "Modern yazılım teknolojileriyle ölçeklenebilir backend çözümleri ve dinamik web arayüzleri geliştiren yazılım geliştirici.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="tr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Preconnect + fonts: JetBrains Mono (developer accent) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Theme init — MUST run before first paint to avoid a white/wrong-theme
+      flash. This is intentionally inline and synchronous.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersLight =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches;
+          var theme = stored ? stored : prefersLight ? "light" : "dark";
+          document.documentElement.classList.remove("dark", "light");
+          document.documentElement.classList.add(theme);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen font-sans antialiased">
+    <!-- ================= NAVBAR ================= -->
+    <header
+      class="fixed top-0 inset-x-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-xl transition-colors duration-300"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10"
+      >
+        <a
+          href="/"
+          class="font-mono text-sm font-medium tracking-tight text-[var(--text)]"
+        >
+          <span class="text-[var(--accent-purple)]">const</span>
+          <span class="text-[var(--text)]"> dev</span>
+          <span class="text-[var(--text-dim)]"> = </span>
+          <span class="text-[var(--accent-green)]">"hikmet.gulec"</span>
+        </a>
+
+        <nav class="hidden items-center gap-8 font-mono text-[13px] text-[var(--text-dim)] md:flex">
+          <a href="#yetkinlikler" class="transition-colors duration-200 hover:text-[var(--text)]">yetkinlikler</a>
+          <a href="#projeler" class="transition-colors duration-200 hover:text-[var(--text)]">projeler</a>
+          <a href="#iletisim" class="transition-colors duration-200 hover:text-[var(--text)]">iletişim</a>
+        </nav>
+
+        <!-- Theme toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Temayı değiştir"
+          class="group relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition-colors duration-300 hover:border-[var(--accent-blue)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-blue)]"
+        >
+          <!-- Sun icon (shown in dark mode → click to go light) -->
+          <svg
+            id="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="absolute h-[18px] w-[18px] transition-[opacity,transform] duration-300 [will-change:transform,opacity]"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <!-- Moon icon (shown in light mode → click to go dark) -->
+          <svg
+            id="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="absolute h-[18px] w-[18px] transition-[opacity,transform] duration-300 [will-change:transform,opacity]"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= PAGE CONTENT ================= -->
+    <main class="pt-16">
+      <slot />
+    </main>
+
+    <!-- ================= FOOTER / CONTACT ================= -->
+    <footer
+      id="iletisim"
+      class="relative border-t border-[var(--border)] bg-[var(--surface-2)] transition-colors duration-300"
+    >
+      <div class="mx-auto max-w-6xl px-6 py-16 md:px-10">
+        <p class="font-mono text-xs text-[var(--accent-green)]">// iletişim</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-[var(--text)] md:text-3xl">
+          İletişim
+        </h2>
+        <p class="mt-3 max-w-md text-sm leading-relaxed text-[var(--text-dim)]">
+          Yeni projeler ve iş birlikleri için doğrudan ulaşabilirsiniz.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <a
+            href="mailto:hikmetggulec@gmail.com"
+            class="group flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 backdrop-blur-md transition-colors duration-300 hover:border-[var(--accent-blue)]"
+          >
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-blue)]/10 text-[var(--accent-blue)]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 6-10 7L2 6" />
+              </svg>
+            </span>
+            <span class="flex flex-col">
+              <span class="font-mono text-[11px] uppercase tracking-wide text-[var(--text-dim)]">E-posta</span>
+              <span class="text-sm text-[var(--text)]">hikmetggulec@gmail.com</span>
+            </span>
+          </a>
+
+          <a
+            href="tel:+905539237358"
+            class="group flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 backdrop-blur-md transition-colors duration-300 hover:border-[var(--accent-green)]"
+          >
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-green)]/10 text-[var(--accent-green)]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </span>
+            <span class="flex flex-col">
+              <span class="font-mono text-[11px] uppercase tracking-wide text-[var(--text-dim)]">Telefon</span>
+              <span class="text-sm text-[var(--text)]">+90 (553) 923 73 58</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="mt-12 flex flex-col items-start justify-between gap-4 border-t border-[var(--border)] pt-6 text-xs text-[var(--text-dim)] sm:flex-row sm:items-center">
+          <p class="font-mono">© {new Date().getFullYear()} Hikmet Güleç</p>
+          <p class="font-mono text-[var(--text-dim)]">
+            <span class="text-[var(--accent-purple)]">status</span>:
+            <span class="text-[var(--accent-green)]">açık — yeni projelere hazır</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Theme toggle logic (runs after hydration, tiny + dependency-free) -->
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var btn = document.getElementById("theme-toggle");
+        if (!btn) return;
+        btn.addEventListener("click", function () {
+          var isLight = root.classList.contains("light");
+          root.classList.remove("light", "dark");
+          root.classList.add(isLight ? "dark" : "light");
+          try {
+            localStorage.setItem("theme", isLight ? "dark" : "light");
+          } catch (e) {}
+        });
+      })();
+    </script>
+
+    <!-- Scroll-reveal: lightweight IntersectionObserver, no external library -->
+    <script is:inline>
+      (function () {
+        var els = document.querySelectorAll("[data-reveal]");
+        if (!("IntersectionObserver" in window) || els.length === 0) {
+          els.forEach(function (el) { el.classList.add("is-visible"); });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+
+    <style is:global>
+      /* ===================================================================
+         DESIGN TOKENS
+         Dark theme = default ("code editor" palette).
+         Light theme overrides via html.light
+      =================================================================== */
+      html.dark {
+        --bg: #0a0a0c;
+        --bg-radial: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(97, 175, 239, 0.12), transparent);
+        --surface: rgba(255, 255, 255, 0.035);
+        --surface-2: rgba(255, 255, 255, 0.02);
+        --nav-bg: rgba(10, 10, 12, 0.6);
+        --border: rgba(255, 255, 255, 0.09);
+        --text: #e7e7ea;
+        --text-dim: #8b8b95;
+        --accent-blue: #61afef;
+        --accent-green: #98c379;
+        --accent-purple: #c678dd;
+        --accent-amber: #e5c07b;
+      }
+
+      html.light {
+        --bg: #f7f7f8;
+        --bg-radial: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(97, 175, 239, 0.1), transparent);
+        --surface: rgba(255, 255, 255, 0.7);
+        --surface-2: rgba(255, 255, 255, 0.55);
+        --nav-bg: rgba(247, 247, 248, 0.65);
+        --border: rgba(10, 10, 12, 0.09);
+        --text: #17171a;
+        --text-dim: #5b5b63;
+        --accent-blue: #2e7fd6;
+        --accent-green: #4c8a2f;
+        --accent-purple: #9333ea;
+        --accent-amber: #b3791f;
+      }
+
+      html,
+      body {
+        background-color: var(--bg);
+        background-image: var(--bg-radial);
+        background-attachment: fixed;
+        color: var(--text);
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+      }
+
+      .font-mono,
+      code,
+      pre {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      }
+
+      /* Scroll reveal: transform + opacity only → GPU accelerated */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        will-change: opacity, transform;
+      }
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Theme-toggle icon crossfade, driven purely by CSS state */
+      #icon-sun {
+        opacity: 0;
+        transform: scale(0.5) rotate(-90deg);
+      }
+      #icon-moon {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      html.light #icon-sun {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      html.light #icon-moon {
+        opacity: 0;
+        transform: scale(0.5) rotate(90deg);
+      }
+
+      ::selection {
+        background: var(--accent-blue);
+        color: #0a0a0c;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+        [data-reveal] {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </body>
+</html>
