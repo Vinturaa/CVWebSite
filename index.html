@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>portfolio</title>
+<style>
+  :root{
+    --wall1:#000000;
+    --wall2:#050505;
+    --window-bg:#f5f5f5;
+    --window-border:#2a2a2a;
+    --titlebar:#e8e8e8;
+    --taskbar-bg:rgba(0,0,0,.85);
+    --accent:#ffffff;
+    --text:#111111;
+    --muted:#555555;
+    --font-title: 'Courier New', Courier, monospace;
+    --font-body: 'Courier New', Courier, monospace;
+    --star-shadow-1: 32.38vw 15.08vh #fff, 65.09vw 7.24vh #fff, 53.59vw 36.57vh #fff, 5.8vw 50.74vh #fff, 3.75vw 43.36vh #fff, 6.99vw 9.07vh #fff, 42.45vw 82.69vh #fff, 12.38vw 22.32vh #fff, 62.74vw 94.77vh #fff, 57.71vw 39.67vh #fff, 97.63vw 4.66vh #fff, 85.85vw 28.96vh #fff, 14.43vw 11.78vh #fff, 30.85vw 81.61vh #fff, 18.07vw 58.16vh #fff, 63.89vw 37.24vh #fff, 54.77vw 6.28vh #fff, 5.96vw 20.6vh #fff, 68.04vw 42.76vh #fff, 31.41vw 58.56vh #fff, 45.32vw 29.98vh #fff, 79.44vw 69.9vh #fff, 24.41vw 57.44vh #fff, 52.52vw 87.51vh #fff, 72.94vw 28.79vh #fff, 98.02vw 11.81vh #fff, 41.81vw 75.71vh #fff, 15.2vw 48.9vh #fff, 3.92vw 66.82vh #fff, 76.46vw 57.3vh #fff, 87.55vw 31.37vh #fff, 69.53vw 59.44vh #fff, 57.99vw 45.62vh #fff, 84.0vw 94.47vh #fff, 47.41vw 66.42vh #fff, 6.07vw 70.15vh #fff, 64.71vw 99.31vh #fff, 82.19vw 28.46vh #fff, 38.58vw 66.87vh #fff, 2.26vw 46.17vh #fff, 16.8vw 11.71vh #fff, 5.9vw 76.82vh #fff, 12.93vw 24.76vh #fff, 39.09vw 87.14vh #fff, 8.06vw 44.92vh #fff, 54.94vw 88.34vh #fff, 81.93vw 86.4vh #fff, 27.84vw 41.53vh #fff, 35.88vw 88.42vh #fff, 95.77vw 15.09vh #fff, 17.62vw 23.2vh #fff, 23.33vw 48.5vh #fff, 58.91vw 26.27vh #fff, 0.41vw 41.89vh #fff, 36.93vw 56.63vh #fff, 95.31vw 69.05vh #fff, 51.55vw 61.76vh #fff, 67.62vw 5.4vh #fff, 89.95vw 78.0vh #fff, 87.45vw 79.79vh #fff, 39.24vw 39.9vh #fff, 10.35vw 63.43vh #fff, 6.22vw 6.73vh #fff, 20.88vw 16.23vh #fff, 34.01vw 5.26vh #fff, 0.02vw 15.13vh #fff, 10.15vw 36.36vh #fff, 2.55vw 87.43vh #fff, 61.41vw 14.86vh #fff, 25.23vw 34.74vh #fff, 36.42vw 12.28vh #fff, 84.89vw 99.31vh #fff, 46.6vw 48.38vh #fff, 8.59vw 10.22vh #fff, 34.26vw 26.48vh #fff, 82.89vw 16.14vh #fff, 2.31vw 95.1vh #fff, 52.83vw 14.66vh #fff, 54.32vw 2.7vh #fff, 52.81vw 97.85vh #fff, 86.33vw 69.62vh #fff, 26.11vw 36.67vh #fff, 16.7vw 77.19vh #fff, 53.26vw 77.91vh #fff, 32.97vw 22.3vh #fff, 81.15vw 98.49vh #fff, 85.26vw 80.61vh #fff, 81.83vw 73.99vh #fff, 22.67vw 51.76vh #fff, 35.56vw 2.9vh #fff, 2.79vw 27.94vh #fff, 25.92vw 69.25vh #fff, 95.65vw 44.72vh #fff, 93.7vw 98.8vh #fff, 95.5vw 36.46vh #fff, 22.05vw 22.68vh #fff, 19.67vw 20.44vh #fff, 62.41vw 90.03vh #fff, 84.04vw 47.95vh #fff, 65.3vw 79.96vh #fff, 8.48vw 66.06vh #fff, 90.98vw 78.23vh #fff, 75.01vw 47.8vh #fff, 17.85vw 78.91vh #fff, 33.25vw 80.08vh #fff, 97.17vw 39.58vh #fff, 40.14vw 94.68vh #fff, 72.48vw 17.0vh #fff, 12.7vw 15.12vh #fff, 90.49vw 80.65vh #fff, 14.62vw 82.65vh #fff, 98.03vw 65.73vh #fff, 35.04vw 54.87vh #fff, 13.1vw 1.42vh #fff, 97.09vw 64.97vh #fff, 52.66vw 93.36vh #fff, 43.38vw 87.17vh #fff, 82.62vw 21.1vh #fff, 25.18vw 29.3vh #fff, 24.05vw 58.64vh #fff, 25.94vw 41.9vh #fff, 13.11vw 91.0vh #fff, 35.38vw 45.82vh #fff, 58.33vw 90.43vh #fff, 42.06vw 91.77vh #fff, 50.16vw 53.18vh #fff, 52.35vw 1.87vh #fff, 44.01vw 18.31vh #fff, 0.39vw 79.92vh #fff, 17.23vw 47.35vh #fff, 72.52vw 55.65vh #fff, 32.6vw 51.83vh #fff, 55.54vw 78.43vh #fff, 10.61vw 56.03vh #fff, 24.85vw 27.69vh #fff, 77.23vw 50.77vh #fff, 56.17vw 76.0vh #fff, 91.25vw 44.32vh #fff, 61.25vw 50.56vh #fff, 51.22vw 69.27vh #fff, 45.23vw 53.33vh #fff, 47.8vw 94.15vh #fff, 69.92vw 87.65vh #fff, 94.22vw 25.96vh #fff, 55.95vw 94.33vh #fff, 84.0vw 13.71vh #fff, 12.16vw 44.21vh #fff, 7.25vw 24.06vh #fff, 7.31vw 66.95vh #fff, 78.39vw 89.7vh #fff;
+    --star-shadow-2: 15.44vw 71.61vh #fff, 66.03vw 14.3vh #fff, 88.28vw 96.75vh #fff, 21.96vw 95.25vh #fff, 39.83vw 48.73vh #fff, 98.99vw 83.24vh #fff, 16.15vw 43.15vh #fff, 51.56vw 33.91vh #fff, 19.57vw 31.85vh #fff, 72.22vw 1.95vh #fff, 55.41vw 44.05vh #fff, 1.81vw 33.15vh #fff, 62.39vw 51.23vh #fff, 6.43vw 98.51vh #fff, 78.84vw 97.17vh #fff, 10.48vw 26.56vh #fff, 3.96vw 77.9vh #fff, 27.04vw 12.96vh #fff, 42.23vw 91.14vh #fff, 81.9vw 25.86vh #fff, 14.94vw 91.92vh #fff, 57.06vw 70.04vh #fff, 8.95vw 5.75vh #fff, 68.82vw 42.53vh #fff, 7.24vw 93.83vh #fff, 63.44vw 80.16vh #fff, 8.37vw 85.62vh #fff, 6.66vw 86.28vh #fff, 45.38vw 33.92vh #fff, 55.31vw 92.67vh #fff, 26.79vw 12.92vh #fff, 52.69vw 23.84vh #fff, 10.95vw 16.14vh #fff, 5.04vw 20.18vh #fff, 31.2vw 30.5vh #fff, 75.95vw 29.0vh #fff, 50.01vw 17.79vh #fff, 34.7vw 1.82vh #fff, 25.04vw 1.53vh #fff, 73.31vw 55.1vh #fff, 18.95vw 47.48vh #fff, 93.46vw 10.63vh #fff, 81.89vw 43.22vh #fff, 49.5vw 83.46vh #fff, 39.31vw 50.67vh #fff, 68.77vw 98.24vh #fff, 34.27vw 83.23vh #fff, 70.67vw 63.6vh #fff, 40.47vw 34.76vh #fff, 5.44vw 12.98vh #fff, 7.07vw 74.09vh #fff, 25.56vw 16.32vh #fff, 8.45vw 84.13vh #fff, 87.05vw 67.05vh #fff, 28.19vw 24.22vh #fff, 29.31vw 45.95vh #fff, 15.75vw 44.58vh #fff, 26.32vw 96.18vh #fff, 97.26vw 54.71vh #fff, 24.44vw 96.57vh #fff, 30.95vw 35.66vh #fff, 0.11vw 38.16vh #fff, 47.46vw 50.28vh #fff, 20.1vw 50.47vh #fff, 0.5vw 26.42vh #fff, 8.98vw 39.95vh #fff, 4.17vw 2.25vh #fff, 30.42vw 23.28vh #fff, 58.56vw 52.92vh #fff, 75.05vw 65.75vh #fff, 71.6vw 87.91vh #fff, 38.95vw 32.61vh #fff, 98.47vw 14.95vh #fff, 72.42vw 64.32vh #fff, 4.38vw 83.53vh #fff, 89.19vw 62.73vh #fff, 73.39vw 81.22vh #fff, 13.93vw 52.38vh #fff, 50.44vw 83.49vh #fff, 80.47vw 82.64vh #fff, 58.41vw 89.28vh #fff, 68.29vw 69.33vh #fff, 22.99vw 3.12vh #fff, 13.31vw 36.07vh #fff, 10.49vw 83.58vh #fff, 55.85vw 62.78vh #fff, 62.62vw 68.07vh #fff, 48.93vw 0.33vh #fff, 79.77vw 74.83vh #fff, 50.3vw 53.52vh #fff, 65.93vw 6.61vh #fff, 73.68vw 25.22vh #fff, 7.44vw 26.56vh #fff, 72.93vw 20.52vh #fff, 73.98vw 97.57vh #fff, 49.39vw 38.26vh #fff, 47.9vw 68.37vh #fff, 76.7vw 61.7vh #fff, 64.28vw 7.75vh #fff, 14.74vw 25.39vh #fff;
+    --star-shadow-3: 74.32vw 30.44vh #fff, 56.78vw 1.25vh #fff, 6.07vw 26.88vh #fff, 67.2vw 69.22vh #fff, 67.57vw 29.09vh #fff, 51.65vw 46.47vh #fff, 46.63vw 11.85vh #fff, 89.37vw 19.93vh #fff, 97.81vw 93.63vh #fff, 1.75vw 45.9vh #fff, 81.99vw 96.81vh #fff, 44.95vw 26.87vh #fff, 20.98vw 94.56vh #fff, 21.07vw 58.15vh #fff, 14.17vw 52.41vh #fff, 95.27vw 13.26vh #fff, 82.02vw 50.87vh #fff, 88.69vw 70.33vh #fff, 23.14vw 89.77vh #fff, 48.61vw 2.48vh #fff, 0.36vw 49.17vh #fff, 45.08vw 30.2vh #fff, 14.07vw 34.4vh #fff, 31.61vw 84.02vh #fff, 0.17vw 75.07vh #fff, 83.91vw 12.0vh #fff, 92.64vw 71.3vh #fff, 90.16vw 28.98vh #fff, 37.22vw 39.29vh #fff, 99.88vw 58.92vh #fff, 36.07vw 42.81vh #fff, 27.52vw 4.83vh #fff, 10.17vw 83.47vh #fff, 28.56vw 93.56vh #fff, 24.93vw 26.57vh #fff, 51.1vw 18.98vh #fff, 37.33vw 95.62vh #fff, 88.43vw 81.2vh #fff, 63.09vw 91.34vh #fff, 94.07vw 54.92vh #fff, 71.96vw 4.95vh #fff, 73.24vw 45.09vh #fff, 75.27vw 64.45vh #fff, 28.62vw 4.9vh #fff, 92.68vw 12.73vh #fff, 47.22vw 34.37vh #fff, 29.78vw 73.9vh #fff, 97.63vw 26.02vh #fff, 65.6vw 30.08vh #fff, 55.73vw 39.44vh #fff, 16.73vw 16.17vh #fff, 20.79vw 90.6vh #fff, 49.71vw 22.0vh #fff, 90.63vw 99.65vh #fff, 45.0vw 13.96vh #fff, 19.24vw 9.07vh #fff, 34.2vw 9.11vh #fff, 23.91vw 25.84vh #fff, 56.96vw 88.73vh #fff, 74.97vw 41.28vh #fff;  }
+  *{ box-sizing:border-box; -webkit-user-select:none; user-select:none; }
+  html,body{ margin:0; padding:0; height:100%; overflow:hidden; font-family:var(--font-body); color:var(--text); }
+  body{
+    background: var(--wall1);
+    height:100vh; width:100vw; position:relative;
+    overflow:hidden;
+  }
+  #stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    width:2px; height:2px; background:transparent;
+    box-shadow: var(--star-shadow-1);
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  #stars2{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    width:2px; height:2px; background:transparent;
+    box-shadow: var(--star-shadow-2);
+    animation: twinkle 4s ease-in-out infinite; animation-delay:1s;
+  }
+  #stars3{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    width:3px; height:3px; background:transparent;
+    box-shadow: var(--star-shadow-3);
+    animation: twinkle 5s ease-in-out infinite; animation-delay:2s;
+  }
+  .star{
+    position:absolute; background:#fff; border-radius:50%;
+    animation: twinkle linear infinite;
+  }
+  @keyframes twinkle{
+    0%, 100%{ opacity:.3; }
+    50%{ opacity:1; }
+  }
+  #hikos-watermark{
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    font-family:var(--font-title);
+    font-size:min(18vw, 220px);
+    font-weight:700;
+    color:#fff;
+    opacity:.06;
+    text-shadow:0 0 40px rgba(255,255,255,.4);
+    letter-spacing:.02em;
+    z-index:0; pointer-events:none;
+    white-space:nowrap;
+  }
+
+  /* ---------- Desktop icons ---------- */
+  #desktop-icons{
+    position:absolute; top:20px; left:20px;
+    display:flex; flex-direction:column; gap:18px;
+    z-index:2;
+  }
+  .icon{
+    position:absolute;
+    width:78px; display:flex; flex-direction:column; align-items:center;
+    gap:5px; cursor:grab; padding:8px 4px; border-radius:8px;
+    transition: background .15s ease;
+  }
+  .icon:active{ cursor:grabbing; }
+  .icon:hover{ background:rgba(255,255,255,.1); }
+  .icon .glyph{
+    width:46px; height:46px; border-radius:11px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px; font-weight:700; color:#000;
+    font-family:var(--font-title);
+  }
+  .icon span{
+    font-family:var(--font-title);
+    font-size:11px; text-align:center; color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,.8);
+    line-height:1.25;
+  }
+
+
+  /* ---------- Windows ---------- */
+  .window{
+    position:absolute;
+    min-width:280px;
+    background:var(--window-bg);
+    border:1px solid var(--window-border);
+    border-radius:10px;
+    box-shadow:0 12px 32px rgba(0,0,0,.35);
+    display:flex; flex-direction:column;
+    overflow:hidden;
+    z-index:10;
+    transition: box-shadow .15s ease;
+  }
+  .window.hidden{ display:none; }
+  .titlebar{
+    height:36px; flex:0 0 auto;
+    background:var(--titlebar);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 10px; cursor:grab;
+    border-bottom:1px solid var(--window-border);
+  }
+  .titlebar:active{ cursor:grabbing; }
+  .titlebar .title{
+    font-weight:600; font-size:13px;
+    color:var(--text);
+  }
+  .titlebar-btns{ display:flex; gap:8px; }
+  .titlebar-btns button{
+    width:13px; height:13px; border-radius:50%;
+    border:none; cursor:pointer; padding:0;
+    transition: filter .15s ease, transform .1s ease;
+  }
+  .titlebar-btns button.close{ background:#111; }
+  .titlebar-btns button.min{ background:#888; }
+  .titlebar-btns button:hover{ filter:brightness(1.1); transform:scale(1.1); }
+
+  .window-body{
+    padding:20px 22px;
+    overflow-y:auto;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .window-body h1{
+    font-size:19px; margin:0 0 10px; font-weight:700;
+  }
+  .window-body h2{
+    font-size:14px; margin:16px 0 6px; font-weight:600; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  .window-body a{ color:#000; text-decoration:underline; }
+  .tag{
+    display:inline-block; background:#111; color:#fff;
+    font-size:12px; padding:3px 10px;
+    border-radius:12px; margin:2px 4px 2px 0;
+    font-family:var(--font-title);
+  }
+  .project-card{
+    border:1px solid var(--window-border);
+    border-radius:8px; padding:12px 14px; margin-bottom:12px;
+    background:#fff;
+    transition: box-shadow .15s ease;
+  }
+  .project-card:hover{ box-shadow:0 3px 10px rgba(0,0,0,.08); }
+  .project-card h3{ margin:0 0 4px; font-size:14px; }
+  .project-card p{ margin:0 0 6px; font-size:13px; color:var(--muted); }
+
+  form{ display:flex; flex-direction:column; gap:10px; }
+  form input, form textarea{
+    font-family:var(--font-body); font-size:13px;
+    padding:9px 11px; border:1px solid var(--window-border);
+    border-radius:7px; background:#fff; color:var(--text);
+  }
+  form button{
+    align-self:flex-start;
+    font-size:13px; font-weight:600;
+    padding:9px 18px; border:none;
+    border-radius:7px; background:#111; color:#fff; cursor:pointer;
+    font-family:var(--font-title);
+    transition: filter .15s ease;
+  }
+  form button:hover{ filter:brightness(1.08); }
+
+  /* trash empty animation */
+  #trash-note{
+    position:fixed; bottom:56px; left:20px;
+    background:#fff; color:var(--text); font-size:13px;
+    padding:8px 14px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.25);
+    opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;
+    transform:translateY(6px);
+    z-index:2000;
+  }
+  #trash-note.show{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Taskbar ---------- */
+  #taskbar{
+    position:fixed; bottom:0; left:0; right:0; height:48px;
+    background:var(--taskbar-bg);
+    backdrop-filter:blur(14px);
+    display:flex; align-items:center; gap:8px; padding:0 10px;
+    z-index:1000; border-top:1px solid rgba(255,255,255,.08);
+  }
+  #start-btn{
+    font-weight:600; font-size:13px;
+    background:transparent; color:#fff;
+    border:none; border-radius:6px;
+    padding:8px 14px; cursor:pointer;
+    transition: background .15s ease;
+  }
+  #start-btn:hover{ background:rgba(255,255,255,.12); }
+  #taskbar-items{ display:flex; gap:6px; flex:1; overflow-x:auto; }
+  .task-item{
+    font-size:12.5px;
+    background:rgba(255,255,255,.06); color:#fff; border:none;
+    padding:7px 14px; border-radius:6px; cursor:pointer; white-space:nowrap;
+    transition: background .15s ease;
+  }
+  .task-item:hover{ background:rgba(255,255,255,.16); }
+  .task-item.active{ background:#fff; color:#000; }
+  #clock{
+    font-size:12.5px; color:#fff;
+    padding:0 12px; border-left:1px solid rgba(255,255,255,.15);
+  }
+
+  /* ---------- Start menu ---------- */
+  #start-menu{
+    position:fixed; bottom:52px; left:8px;
+    width:230px; background:#fff;
+    border:1px solid var(--window-border); border-radius:12px;
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+    display:none; flex-direction:column; overflow:hidden; z-index:1001;
+  }
+  #start-menu.open{ display:flex; }
+  #start-menu .sm-header{
+    padding:14px; font-weight:700; font-size:13px; color:var(--muted);
+    border-bottom:1px solid var(--window-border);
+  }
+  #start-menu button{
+    text-align:left; background:none; border:none; padding:11px 16px;
+    font-size:13.5px; cursor:pointer;
+    transition: background .12s ease;
+  }
+  #start-menu button:hover{ background:#f0f2f6; }
+
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:#c7c9cd; border-radius:6px; }
+
+  @media (max-width:600px){
+    .window{ width:90vw !important; left:5vw !important; }
+    #desktop-icons{ top:12px; left:12px; gap:12px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+<div id="hikos-watermark">HikOS</div>
+
+<div id="desktop-icons">
+  <div class="icon" data-target="win-home" style="top:0px; left:0px;">
+    <div class="glyph"><p style=" font-family:'Times New Roman', Times, serif;  font-size: 50px; color: white;">H</p></div><span>Home</span>
+  </div>
+  <div class="icon" data-target="win-about" style="top:100px; left:0px;">
+    <div class="glyph"><p style=" font-family:'Times New Roman', Times, serif;  font-size: 50px; color: white;">İ</p></div><span>About</span>
+  </div>
+  <div class="icon" data-target="win-projects" style="top:200px; left:0px;">
+    <div class="glyph"><p style=" font-family:'Times New Roman', Times, serif;  font-size: 50px; color: white;">K</p></div><span>Projects</span>
+  </div>
+  <div class="icon" data-target="win-contact" style="top:300px; left:0px;">
+    <div class="glyph"><p style=" font-family:'Times New Roman', Times, serif;  font-size: 50px; color: white;">O</p></div><span>Contact</span>
+  </div>
+  <div class="icon" data-link="https://www.google.com" style="top:400px; left:0px;">
+    <div class="glyph"><p style=" font-family:'Times New Roman', Times, serif;  font-size: 50px; color: white;">S</p></div><span>Browser</span>
+  </div>
+
+
+</div>
+
+
+<!-- HOME WINDOW -->
+<div class="window" id="win-home" style="top:70px; left:120px; width:380px;">
+  <div class="titlebar" data-window="win-home">
+    <div class="title">Home</div>
+    <div class="titlebar-btns">
+     <button class="min" data-action="min"><p style=" margin :0%; padding: 0%; color:  white;">-</p></button>
+      <button class="close" data-action="close"><p style=" margin :0%; padding: 0%; color:  white; font-size: x-small;">x</p></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <h1>Merhaba, ben Hikmet Güleç</h1>
+    <p>Bu benim dijital masaüstüm. Soldaki ikonlara tıklayarak pencereleri
+    açabilir, başlık çubuğundan sürükleyebilir ve alt taraftaki görev
+    çubuğundan pencereler arasında geçiş yapabilirsin.</p>
+    <p>
+      <span class="tag">C# / ASP.NET Core</span>
+      <span class="tag">Go</span>
+      <span class="tag">Java</span>
+    </p>
+  </div>
+</div>
+
+<!-- ABOUT WINDOW -->
+<div class="window hidden" id="win-about" style="top:110px; left:420px; width:360px;">
+  <div class="titlebar" data-window="win-about">
+    <div class="title">About</div>
+    <div class="titlebar-btns">
+     <button class="min" data-action="min"><p style=" margin :0%; padding: 0%; color:  white;">-</p></button>
+      <button class="close" data-action="close"><p style=" margin :0%; padding: 0%; color:  white; font-size: x-small;">x</p></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <h1>Hakkımda</h1>
+    <p>Nişantaşı Üniversitesi Bilgisayar Programcılığı son sınıf öğrencisiyim.
+    ASP.NET Core, Go ve Java teknolojileriyle backend projeleri geliştiriyorum. </p>
+    <h2>Yetenekler</h2>
+    <p>
+      <span class="tag">C# (ASP.NET Core)</span>
+      <span class="tag">Go</span>
+      <span class="tag">Java</span>
+      <span class="tag">HTML/CSS</span>
+      <span class="tag">MySQL (XAMPP)</span>
+      <span class="tag">Python</span>
+      <span class="tag">Pygame</span>
+      <span class="tag">Adobe Photoshop</span>
+    </p>
+    <h2>Eğitim</h2>
+    <p>Nişantaşı Üniversitesi &middot; Bilgisayar Programcılığı (Önlisans) &middot; Eki 2024 - Devam Ediyor<br>
+    Kadıköy Göztepe Mesleki ve Teknik Anadolu Lisesi &middot; Web Tasarımı &middot; 2019 - 2023</p>
+    <h2>İlgi alanları</h2>
+    <p>Yapay Zeka, Strateji ve RPG Oyunları, Oyun Geliştirme, Spor.</p>
+  </div>
+</div>
+
+<!-- PROJECTS WINDOW -->
+<div class="window hidden" id="win-projects" style="top:90px; left:200px; width:420px;">
+  <div class="titlebar" data-window="win-projects">
+    <div class="title">Projects</div>
+    <div class="titlebar-btns">
+      <button class="min" data-action="min"><p style=" margin :0%; padding: 0%; color:  white;">-</p></button>
+      <button class="close" data-action="close"><p style=" margin :0%; padding: 0%; color:  white; font-size: x-small;">x</p></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <h1>Projelerim</h1>
+
+    <div class="project-card">
+      <h3>Project Blog</h3>
+      <p>Bu proje 9 ayrı projeden oluşan bir proje bloğudur.</p>
+      <a href="projects/orn/index.html" target="_blank">Projeyi gör &rarr;</a>
+    </div>
+
+
+    <div class="project-card">
+      <h3>Proje adı 3</h3>
+      <p>Kısa açıklama: ne yaptın, hangi araçları kullandın.</p>
+      <a href="projects/WebSite/src/pages/index.astro" target="_blank">Projeyi gör &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT WINDOW -->
+<div class="window hidden" id="win-contact" style="top:130px; left:500px; width:340px;">
+  <div class="titlebar" data-window="win-contact">
+    <div class="title">Contact</div>
+    <div class="titlebar-btns">
+     <button class="min" data-action="min"><p style=" margin :0%; padding: 0%; color:  white;">-</p></button>
+      <button class="close" data-action="close"><p style=" margin :0%; padding: 0%; color:  white; font-size: x-small;">x</p></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <h1>İletişim</h1>
+    <p>Bana ulaşmak için:</p>
+    <p>
+      hikmetggulec@gmail.com<br>
+      0553 923 73 58<br>
+      İstanbul, Üsküdar
+    </p>
+    <h2>Mesaj bırak</h2>
+    <form onsubmit="event.preventDefault(); alert('Mesajın kaydedildi (demo). Gerçek gönderim için bir form servisi bağlaman gerekiyor.');">
+      <input type="text" placeholder="Adın" required>
+      <input type="email" placeholder="E-postan" required>
+      <textarea rows="3" placeholder="Mesajın"></textarea>
+      <button type="submit">Gönder</button>
+    </form>
+  </div>
+</div>
+
+<!-- START MENU -->
+<div id="start-menu">
+  <div class="sm-header">Menü</div>
+  <button data-target="win-home">Home</button>
+  <button data-target="win-about">About</button>
+  <button data-target="win-projects">Projects</button>
+  <button data-target="win-contact">Contact</button>
+</div>
+
+<!-- TASKBAR -->
+<div id="taskbar">
+  <button id="start-btn">HikOS</button>
+  <div id="taskbar-items"></div>
+  <div id="clock">00:00</div>
+</div>
+
+<script>
+(function(){
+  const windows = document.querySelectorAll('.window');
+  const taskbarItems = document.getElementById('taskbar-items');
+  const startBtn = document.getElementById('start-btn');
+  const startMenu = document.getElementById('start-menu');
+  let zTop = 20;
+
+  // state per window: 'closed' | 'minimized' | 'open'
+  const state = {};
+  windows.forEach(w=>{ state[w.id] = w.classList.contains('hidden') ? 'closed' : 'open'; });
+
+  function windowTitle(win){
+    return win.querySelector('.titlebar .title').textContent.trim();
+  }
+
+  function bringToFront(win){
+    zTop += 1;
+    win.style.zIndex = zTop;
+    win.dataset.topz = zTop;
+    refreshTaskbarActive();
+  }
+
+  function isTopMost(id){
+    let max = -1, maxId = null;
+    windows.forEach(w=>{
+      if(state[w.id] !== 'closed'){
+        const z = parseInt(w.dataset.topz || 0, 10);
+        if(z > max){ max = z; maxId = w.id; }
+      }
+    });
+    return maxId === id;
+  }
+
+  function refreshTaskbarActive(){
+    document.querySelectorAll('.task-item').forEach(item=>{
+      const id = item.dataset.win;
+      item.classList.toggle('active', state[id] === 'open' && isTopMost(id));
+    });
+  }
+
+  function openWindow(id){
+    const win = document.getElementById(id);
+    if(!win) return;
+    state[id] = 'open';
+    win.classList.remove('hidden');
+    bringToFront(win);
+    syncTaskbar();
+  }
+
+  function minimizeWindow(id){
+    const win = document.getElementById(id);
+    state[id] = 'minimized';
+    win.classList.add('hidden');
+    syncTaskbar();
+  }
+
+  function closeWindow(id){
+    const win = document.getElementById(id);
+    state[id] = 'closed';
+    win.classList.add('hidden');
+    syncTaskbar();
+  }
+
+  function toggleFromTaskbar(id){
+    const win = document.getElementById(id);
+    if(state[id] === 'minimized'){
+      openWindow(id);
+    } else if(state[id] === 'open'){
+      if(isTopMost(id)){
+        minimizeWindow(id);
+      } else {
+        bringToFront(win);
+        refreshTaskbarActive();
+      }
+    }
+  }
+
+  function syncTaskbar(){
+    taskbarItems.innerHTML = '';
+    windows.forEach(win=>{
+      if(state[win.id] !== 'closed'){
+        const btn = document.createElement('button');
+        btn.className = 'task-item';
+        btn.dataset.win = win.id;
+        btn.textContent = windowTitle(win);
+        btn.addEventListener('click', ()=> toggleFromTaskbar(win.id));
+        taskbarItems.appendChild(btn);
+      }
+    });
+    refreshTaskbarActive();
+  }
+
+  // desktop icons -> windows
+  document.querySelectorAll('.icon[data-target]').forEach(icon=>{
+    icon.addEventListener('click', ()=> openWindow(icon.dataset.target));
+  });
+
+  // desktop icons -> external links
+  document.querySelectorAll('.icon[data-link]').forEach(icon=>{
+    icon.addEventListener('click', ()=>{
+      window.open(icon.dataset.link, '_blank');
+    });
+  });
+
+  // trash icon
+
+
+  // start menu buttons
+  document.querySelectorAll('#start-menu button[data-target]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      openWindow(btn.dataset.target);
+      startMenu.classList.remove('open');
+    });
+  });
+
+  startBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    startMenu.classList.toggle('open');
+  });
+  document.addEventListener('click', ()=> startMenu.classList.remove('open'));
+
+  // window controls
+  windows.forEach(win=>{
+    win.addEventListener('mousedown', ()=> bringToFront(win));
+    const titlebar = win.querySelector('.titlebar');
+
+    titlebar.querySelector('[data-action="close"]').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      closeWindow(win.id);
+    });
+    titlebar.querySelector('[data-action="min"]').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      minimizeWindow(win.id);
+    });
+
+    // dragging
+    let dragging=false, offX=0, offY=0;
+    titlebar.addEventListener('mousedown', (e)=>{
+      if(e.target.closest('button')) return;
+      dragging = true;
+      const rect = win.getBoundingClientRect();
+      offX = e.clientX - rect.left;
+      offY = e.clientY - rect.top;
+      bringToFront(win);
+    });
+    document.addEventListener('mousemove', (e)=>{
+      if(!dragging) return;
+      let x = e.clientX - offX;
+      let y = e.clientY - offY;
+      x = Math.max(0, Math.min(window.innerWidth - 100, x));
+      y = Math.max(0, Math.min(window.innerHeight - 80, y));
+      win.style.left = x+'px';
+      win.style.top = y+'px';
+    });
+    document.addEventListener('mouseup', ()=> dragging=false);
+
+    // touch support
+    titlebar.addEventListener('touchstart', (e)=>{
+      if(e.target.closest('button')) return;
+      const touch = e.touches[0];
+      const rect = win.getBoundingClientRect();
+      offX = touch.clientX - rect.left;
+      offY = touch.clientY - rect.top;
+      dragging = true;
+      bringToFront(win);
+    }, {passive:true});
+    document.addEventListener('touchmove', (e)=>{
+      if(!dragging) return;
+      const touch = e.touches[0];
+      let x = touch.clientX - offX;
+      let y = touch.clientY - offY;
+      win.style.left = x+'px';
+      win.style.top = y+'px';
+    }, {passive:true});
+    document.addEventListener('touchend', ()=> dragging=false);
+  });
+
+  // clock
+  function updateClock(){
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = h+':'+m;
+  }
+  updateClock();
+  setInterval(updateClock, 1000*30);
+
+  // draggable desktop icons
+  document.querySelectorAll('.icon').forEach(icon=>{
+    let dragging = false, moved = false, offX = 0, offY = 0;
+
+    icon.addEventListener('mousedown', (e)=>{
+      dragging = true; moved = false;
+      const rect = icon.getBoundingClientRect();
+      offX = e.clientX - rect.left;
+      offY = e.clientY - rect.top;
+      e.stopPropagation();
+    });
+    document.addEventListener('mousemove', (e)=>{
+      if(!dragging) return;
+      moved = true;
+      let x = e.clientX - offX - 20;
+      let y = e.clientY - offY - 20;
+      x = Math.max(0, Math.min(window.innerWidth - 90, x));
+      y = Math.max(0, Math.min(window.innerHeight - 100, y));
+      icon.style.left = x + 'px';
+      icon.style.top = y + 'px';
+    });
+    document.addEventListener('mouseup', ()=>{ dragging = false; });
+
+    // suppress click-to-open right after a drag
+    icon.addEventListener('click', (e)=>{
+      if(moved){ e.stopPropagation(); e.preventDefault(); moved = false; }
+    }, true);
+  });
+
+  // init
+  windows.forEach(win=> bringToFront(win));
+  openWindow('win-home');
+})();
+</script>
+
+</body>
+</html>
